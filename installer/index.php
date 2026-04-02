@@ -1,3 +1,8 @@
+<?php
+if (file_exists('install.lock') || file_exists('../includes/install.lock')) {
+    die("<h1 style='font-family:sans-serif;text-align:center;margin-top:50px;color:#333;'>Locked.</h1><p style='text-align:center;font-family:sans-serif;'>The application is already installed. To reinstall, please erase your database and delete <b>install.lock</b>.</p>");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

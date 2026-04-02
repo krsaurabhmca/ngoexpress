@@ -65,10 +65,25 @@ define('DB_USER', '$db_user');
 define('DB_PASS', '$db_pass');
 define('DB_NAME', '$db_name');
 
-\$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+// System Version Control
+define('APP_VERSION', '1.0.0');
+
+\$conn = @mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 if (!\$conn) {
-    die(\"Database Connection Error: \" . mysqli_connect_error());
+    // Determine relative path to installer based on current caller script depth
+    \$installer_path = 'installer/index.php';
+    if (file_exists('../installer/index.php')) {
+        \$installer_path = '../installer/index.php';
+    } elseif (file_exists('../../installer/index.php')) {
+        \$installer_path = '../../installer/index.php';
+    }
+    
+    // Prevent redirect loop if already on installer page
+    if (strpos(\$_SERVER['PHP_SELF'], 'installer/') === false) {
+        header(\"Location: \" . \$installer_path);
+        exit;
+    }
 }
 
 // Global Site Settings Helper
@@ -84,13 +99,20 @@ function get_setting(\$key) {
     return null;
 }
 
-// Global Site Settings Update Helper
+// Global Site Settings Update Helper (Resilient version)
 function set_setting(\$key, \$value) {
     global \$conn;
     \$key = mysqli_real_escape_string(\$conn, \$key);
     \$value = mysqli_real_escape_string(\$conn, \$value);
-    \$query = \"UPDATE settings SET value = '\$value' WHERE setting_key = '\$key' LIMIT 1\";
+    // Use INSERT ... ON DUPLICATE KEY UPDATE for maximum reliability
+    \$query = \"INSERT INTO settings (setting_key, value) VALUES ('\$key', '\$value') 
+              ON DUPLICATE KEY UPDATE value = '\$value'\";
     return mysqli_query(\$conn, \$query);
+}
+
+// Global Currency Symbol Helper
+function currency() {
+    return get_setting('currency_symbol') ?: '₹';
 }
 ?>";
 
@@ -98,6 +120,9 @@ if (!file_put_contents('../includes/db.php', $db_config_content)) {
     echo json_encode(['status' => 'error', 'message' => 'Failed to write db.php file check permissions.']);
     exit;
 }
+
+// 7. Create Lock File
+file_put_contents('install.lock', 'Date: ' . date('Y-m-d H:i:s'));
 
 // Installation successful
 echo json_encode(['status' => 'success']);

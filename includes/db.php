@@ -10,10 +10,22 @@ define('DB_NAME', 'ngo_test_db');
 // System Version Control
 define('APP_VERSION', '1.0.0');
 
-$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+$conn = @mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 if (!$conn) {
-    die("Database Connection Error: " . mysqli_connect_error());
+    // Determine relative path to installer based on current caller script depth
+    $installer_path = 'installer/index.php';
+    if (file_exists('../installer/index.php')) {
+        $installer_path = '../installer/index.php';
+    } elseif (file_exists('../../installer/index.php')) {
+        $installer_path = '../../installer/index.php';
+    }
+    
+    // Prevent redirect loop if already on installer page
+    if (strpos($_SERVER['PHP_SELF'], 'installer/') === false) {
+        header("Location: " . $installer_path);
+        exit;
+    }
 }
 
 // Global Site Settings Helper
