@@ -39,7 +39,7 @@ $themes = [
         </div>
         <?php if ($success_msg): ?>
             <span style="color: #22c55e; font-weight: 700; font-size: 0.8rem; background: #f0fdf4; padding: 6px 15px; border-radius: 8px; border: 1.5px solid #bbf7d0;">
-                <i class="fas fa-check-circle"></i> <?php echo $success_msg; ?>
+                <i class="bi bi-check-circle-fill"></i> <?php echo $success_msg; ?>
             </span>
         <?php endif; ?>
     </div>
@@ -51,7 +51,7 @@ $themes = [
         ?>
             <div style="border: 2px solid <?php echo $is_active ? '#3b82f6' : '#f1f5f9'; ?>; padding: 20px; border-radius: 16px; background: white; transition: 0.3s; position: relative; <?php echo $is_active ? 'box-shadow: 0 10px 25px -10px rgba(59, 130, 246, 0.3);' : ''; ?>">
                 <?php if ($is_active): ?>
-                    <div style="position: absolute; top: 10px; right: 10px; color: #3b82f6; font-size: 0.8rem; font-weight: 800;"><i class="fas fa-check-circle"></i> ACTIVE</div>
+                    <div style="position: absolute; top: 10px; right: 10px; color: #3b82f6; font-size: 0.8rem; font-weight: 800;"><i class="bi bi-check-circle-fill"></i> ACTIVE</div>
                 <?php endif; ?>
                 
                 <h4 style="margin-bottom: 15px; font-size: 1rem;"><?php echo $t['name']; ?></h4>
@@ -104,7 +104,7 @@ $themes = [
 
         <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
             <button type="submit" class="btn btn-primary" style="padding: 15px 50px; font-weight: 800; border-radius: 100px;">
-               Update Visual Content <i class="fas fa-check-circle" style="margin-left: 10px;"></i>
+               Update Visual Content <i class="bi bi-check-circle-fill" style="margin-left: 10px;"></i>
             </button>
         </div>
     </form>

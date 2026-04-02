@@ -69,7 +69,7 @@ $notices = mysqli_query($conn, "SELECT * FROM notices ORDER BY id DESC");
                                     <span style='font-size: 0.7rem; {$status_badge} padding: 2px 8px; border-radius: 4px; font-weight: 700; text-transform: uppercase;'>".strtoupper($row['status'])."</span>
                                     <span style='font-size: 0.7rem; color: #94a3b8; margin-left: 10px;'><i class='far fa-calendar-alt'></i> ".date('d M, Y', strtotime($row['date']))."</span>
                                 </div>
-                                <a href='?delete={$row['id']}' style='color: #ef4444; font-size: 0.85rem;' onclick='return confirm(\"Delete notice?\")'><i class='fas fa-trash'></i></a>
+                                <a href='?delete={$row['id']}' style='color: #ef4444; font-size: 0.85rem;' onclick='return confirm(\"Delete notice?\")'><i class='bi bi-trash'></i></a>
                             </div>
                         </div>";
                 }

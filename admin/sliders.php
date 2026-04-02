@@ -60,7 +60,7 @@ $sliders = mysqli_query($conn, "SELECT * FROM sliders ORDER BY id DESC");
         <div class="card-header">
             <h3 style="font-size: 1.2rem;">Active Website Sliders</h3>
             <?php if ($success_msg): ?>
-                <span style="color: #2ecc71; font-weight: 600; font-size: 0.85rem;"><i class="fas fa-check-circle"></i> <?php echo $success_msg; ?></span>
+                <span style="color: #2ecc71; font-weight: 600; font-size: 0.85rem;"><i class="bi bi-check-circle-fill"></i> <?php echo $success_msg; ?></span>
             <?php endif; ?>
         </div>
 
@@ -73,7 +73,7 @@ $sliders = mysqli_query($conn, "SELECT * FROM sliders ORDER BY id DESC");
                             <div style='padding: 15px;'>
                                 <h4 style='font-size: 1rem; margin-bottom: 5px;'>{$row['title']}</h4>
                                 <p style='font-size: 0.75rem; color: #777; margin-bottom: 15px;'>{$row['sub_title']}</p>
-                                <a href='?delete={$row['id']}' style='color: #e74c3c; font-size: 0.8rem; font-weight: 600;' onclick='return confirm(\"Delete this slider?\")'><i class='fas fa-trash'></i> REMOVE SLIDER</a>
+                                <a href='?delete={$row['id']}' style='color: #e74c3c; font-size: 0.8rem; font-weight: 600;' onclick='return confirm(\"Delete this slider?\")'><i class='bi bi-trash'></i> REMOVE SLIDER</a>
                             </div>
                         </div>";
                 }

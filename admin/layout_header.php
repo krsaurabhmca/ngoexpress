@@ -17,7 +17,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <title>NGO Management Portal</title>
     <!-- Google Fonts & icons -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Main CSS -->
     <link rel="stylesheet" href="../assets/css/main.css">
     <!-- Deep Dynamic Theme Injection (Admin) -->
@@ -30,6 +30,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
             --header-height: 60px;
         }
         * { font-family: var(--font-family) !important; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
     </style>
     <style>
         body {
@@ -164,56 +165,72 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <a href="index.php" class="sidebar-logo">NGOEXPRESS</a>
+        <a href="index.php" class="sidebar-logo" style="display: flex; flex-direction: column; align-items: center; gap: 8px; text-decoration: none;">
+            <?php 
+                $logo = get_setting('site_logo');
+                $site_name = get_setting('site_name');
+                $mode = get_setting('logo_display_mode') ?: 'both';
+                
+                if ($logo && ($mode == 'both' || $mode == 'logo')) {
+                    echo '<img src="../' . $logo . '" style="height: 40px;" alt="' . $site_name . '">';
+                } elseif (!$logo && ($mode == 'both' || $mode == 'logo')) {
+                    echo '<i class="bi bi-heart-fill"></i>';
+                }
+                
+                if ($mode == 'both' || $mode == 'name') {
+                    echo '<span>' . ($site_name ?: 'NGOEXPRESS') . '</span>';
+                }
+            ?>
+        </a>
 
         <div class="nav-menu">
             <h3 class="nav-menu-title">Main Menu</h3>
             <a href="index.php" class="nav-item <?php echo $current_page == 'index.php' ? 'active' : ''; ?>">
-                <i class="fas fa-th-large"></i> Dashboard
+                <i class="bi bi-grid-fill"></i> Dashboard
             </a>
             <a href="donations.php" class="nav-item <?php echo $current_page == 'donations.php' ? 'active' : ''; ?>">
-                <i class="fas fa-hand-holding-usd"></i> Donations
+                <i class="bi bi-cash-coin"></i> Donations
             </a>
             <a href="members.php" class="nav-item <?php echo $current_page == 'members.php' ? 'active' : ''; ?>">
-                <i class="fas fa-users-cog"></i> Members
+                <i class="bi bi-person-gear"></i> Members
             </a>
         </div>
 
         <div class="nav-menu">
             <h3 class="nav-menu-title">CMS Management</h3>
                 <a href="sliders.php" class="nav-item <?php echo (basename($_SERVER['PHP_SELF']) == 'sliders.php') ? 'active' : ''; ?>">
-                    <i class="fas fa-images"></i> Home Sliders
+                    <i class="bi bi-images"></i> Home Sliders
                 </a>
                 <a href="notices.php" class="nav-item <?php echo (basename($_SERVER['PHP_SELF']) == 'notices.php') ? 'active' : ''; ?>">
-                    <i class="fas fa-bullhorn"></i> What's New
+                    <i class="bi bi-megaphone"></i> What's New
                 </a>
                 <a href="services.php" class="nav-item <?php echo (basename($_SERVER['PHP_SELF']) == 'services.php') ? 'active' : ''; ?>">
-                    <i class="fas fa-laptop-code"></i> Impact Areas
+                    <i class="bi bi-laptop"></i> Impact Areas
                 </a>
             <a href="gallery.php" class="nav-item <?php echo $current_page == 'gallery.php' ? 'active' : ''; ?>">
-                <i class="fas fa-photo-video"></i> Media Gallery
+                <i class="bi bi-camera-reels"></i> Media Gallery
             </a>
             <a href="pages.php" class="nav-item <?php echo $current_page == 'pages.php' ? 'active' : ''; ?>">
-                <i class="fas fa-file-alt"></i> Page Content
+                <i class="bi bi-file-text"></i> Page Content
             </a>
         </div>
 
         <div class="nav-menu">
             <h3 class="nav-menu-title">System Settings</h3>
             <a href="settings.php" class="nav-item <?php echo $current_page == 'settings.php' ? 'active' : ''; ?>">
-                <i class="fas fa-cogs"></i> Site Settings
+                <i class="bi bi-gear"></i> Site Settings
             </a>
             <a href="theme.php" class="nav-item <?php echo $current_page == 'theme.php' ? 'active' : ''; ?>">
-                <i class="fas fa-palette"></i> Theme Config
+                <i class="bi bi-palette"></i> Theme Config
             </a>
             <a href="logout.php" class="nav-item" style="color: #e74c3c;">
-                <i class="fas fa-sign-out-alt"></i> Logout Portal
+                <i class="bi bi-box-arrow-right"></i> Logout Portal
             </a>
         </div>
 
         <!-- Git/Auto Update Special Section -->
-        <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 15px; text-align: center;">
-            <p style="font-size: 0.8rem; color: #777;">Version Control</p>
+        <div style="margin-top: 30px; padding: 20px; background: #1e293b; border-radius: 15px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
+            <p style="font-size: 0.8rem; color: #94a3b8; margin: 0;">NgoExpress Ver. <?php echo defined('APP_VERSION') ? APP_VERSION : '0.00'; ?></p>
             <button class="btn btn-primary" style="margin-top: 10px; width: 100%; border-radius: 8px; padding: 10px; background: #333;" onclick="checkUpdate()">Update System</button>
         </div>
     </div>
@@ -222,24 +239,24 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; background: white; padding: 15px 20px; border-radius: 10px; border: 1px solid #e2e8f0;">
             <div>
                 <h1 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin: 0;">Dashboard Overview</h1>
-                <p style="color: #64748b; font-size: 0.75rem; margin: 0;">System Status: <span style="color: #22c55e;">Online</span> • Logged in as Administrator</p>
+                <p style="color: #64748b; font-size: 0.75rem; margin: 0;">System Status: <span style="color: #22c55e;">Online</span> • Version: <?php echo defined('APP_VERSION') ? APP_VERSION : '0.00'; ?> • Admin</p>
             </div>
             <div style="display: flex; gap: 15px; align-items: center;">
-                <a href="../index.php" target="_blank" class="btn btn-outline" style="padding: 6px 14px; font-size: 0.75rem; border: 1px solid #e2e8f0;">Live Site <i class="fas fa-external-link-alt" style="margin-left: 5px;"></i></a>
+                <a href="../index.php" target="_blank" class="btn btn-outline" style="padding: 6px 14px; font-size: 0.75rem; border: 1px solid #e2e8f0;">Live Site <i class="bi bi-box-arrow-up-right" style="margin-left: 5px;"></i></a>
                 <div style="height: 30px; width: 1px; background: #e2e8f0;"></div>
                 <div style="position: relative; display: flex; align-items: center; gap: 10px; cursor: pointer;" onclick="toggleProfileMenu()">
                     <img src="https://ui-avatars.com/api/?name=Admin&background=1e293b&color=fff&size=32" style="width: 32px; height: 32px; border-radius: 6px;" alt="Admin Profile">
                     <div style="display: none; md:block;">
-                        <span style="font-weight: 600; font-size: 0.85rem; color: #1e293b; display: block;">Super Admin <i class="fas fa-chevron-down" style="font-size: 0.6rem; margin-left: 3px;"></i></span>
+                        <span style="font-weight: 600; font-size: 0.85rem; color: #1e293b; display: block;">Super Admin <i class="bi bi-chevron-down" style="font-size: 0.6rem; margin-left: 3px;"></i></span>
                     </div>
                     
                     <!-- Dropdown Menu -->
                     <div id="profile-dropdown" style="display: none; position: absolute; top: 45px; right: 0; width: 160px; background: white; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 1002; padding: 5px;">
                         <a href="settings.php#security" style="display: flex; align-items: center; gap: 8px; padding: 10px; font-size: 0.8rem; border-radius: 6px; color: #475569;" class="dropdown-item">
-                            <i class="fas fa-key"></i> Security
+                            <i class="bi bi-key"></i> Security
                         </a>
                         <a href="javascript:void(0)" onclick="confirmLogout()" style="display: flex; align-items: center; gap: 8px; padding: 10px; font-size: 0.8rem; border-radius: 6px; color: #ef4444;" class="dropdown-item">
-                            <i class="fas fa-sign-out-alt"></i> Logout
+                            <i class="bi bi-box-arrow-right"></i> Logout
                         </a>
                     </div>
                 </div>

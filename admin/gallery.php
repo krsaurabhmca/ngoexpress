@@ -57,7 +57,7 @@ $gallery_items = mysqli_query($conn, "SELECT * FROM gallery ORDER BY id DESC");
             <h3 style="font-size: 1.1rem;">Media Library</h3>
             <?php if ($success_msg): ?>
                 <span style="color: #22c55e; font-weight: 600; font-size: 0.8rem; background: #f0fdf4; padding: 4px 10px; border-radius: 4px; border: 1px solid #bbf7d0;">
-                    <i class="fas fa-check-circle"></i> <?php echo $success_msg; ?>
+                    <i class="bi bi-check-circle-fill"></i> <?php echo $success_msg; ?>
                 </span>
             <?php endif; ?>
         </div>
@@ -70,13 +70,13 @@ $gallery_items = mysqli_query($conn, "SELECT * FROM gallery ORDER BY id DESC");
                             <img src='../{$row['image']}' style='width: 100%; height: 140px; object-fit: cover;'>
                             <div style='padding: 10px;'>
                                 <p style='font-size: 0.75rem; color: #64748b; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'>{$row['title']}</p>
-                                <a href='?delete={$row['id']}' style='color: #ef4444; font-size: 0.7rem; font-weight: 700;' onclick='return confirm(\"Delete this photo?\")'><i class='fas fa-trash'></i> REMOVE IMAGE</a>
+                                <a href='?delete={$row['id']}' style='color: #ef4444; font-size: 0.7rem; font-weight: 700;' onclick='return confirm(\"Delete this photo?\")'><i class='bi bi-trash'></i> REMOVE IMAGE</a>
                             </div>
                         </div>";
                 }
             } else {
                 echo "<div style='grid-column: 1 / -1; padding: 60px; text-align: center; color: #94a3b8;'>
-                        <i class='fas fa-images' style='font-size: 3rem; opacity: 0.1; margin-bottom: 15px;'></i>
+                        <i class='bi bi-images' style='font-size: 3rem; opacity: 0.1; margin-bottom: 15px;'></i>
                         <p>Your media gallery is empty. Upload icons or impact photos above.</p>
                       </div>";
             }

@@ -8,7 +8,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome - Robust Load -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
     
     <style>
@@ -37,7 +37,39 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            transition: 0.3s ease;
         }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: #475569;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--secondary-color); }
 
         .gallery-grid {
             display: grid;
@@ -83,9 +115,23 @@
 </head>
 <body style="background: #f8fafc;">
 
-    <nav>
-        <a href="index.php" class="logo" style="text-decoration:none; color: var(--primary-color); font-weight:800; font-size:1.4rem;">
-            NGOEXPRESS
+    <nav id="navbar">
+        <a href="index.php" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+            <?php 
+                $logo = get_setting('site_logo');
+                $site_name = get_setting('site_name'); 
+                $mode = get_setting('logo_display_mode') ?: 'both';
+                
+                if ($logo && ($mode == 'both' || $mode == 'logo')) {
+                    echo '<img src="' . $logo . '" style="height: 40px;" alt="' . $site_name . '">';
+                } elseif (!$logo && ($mode == 'both' || $mode == 'logo')) {
+                    echo '<i class="bi bi-heart-fill"></i>';
+                }
+                
+                if ($mode == 'both' || $mode == 'name') {
+                    echo '<span>' . ($site_name ?: 'NGOEXPRESS') . '</span>';
+                }
+            ?>
         </a>
         <ul class="nav-links">
             <li><a href="index.php">Home</a></li>
@@ -93,7 +139,13 @@
             <li><a href="membership.php">Membership</a></li>
             <li><a href="contact.php">Contact</a></li>
         </ul>
-        <a href="donate.php" class="btn btn-primary" style="padding:12px 25px; border-radius:50px;">Donate Now</a>
+        <div class="nav-actions" style="display: flex; gap: 10px; align-items: center;">
+            <a href="admin/login.php" class="btn btn-outline" style="border-color: #e2e8f0; color: #475569;">Admin</a>
+            <a href="donate.php" class="btn btn-primary" style="padding:12px 25px; border-radius:50px;">Donate Now</a>
+        </div>
+        <button class="mobile-menu-btn" onclick="document.querySelector('#navbar .nav-links').classList.toggle('active')">
+            <i class="bi bi-list"></i>
+        </button>
     </nav>
 
     <section class="page-header">
@@ -128,7 +180,7 @@
 
     <!-- Footer -->
     <footer style="margin-top: 100px; padding: 50px 0; background: #111; color: #777; text-align: center; border-top: 5px solid var(--primary-color);">
-        <p>&copy; 2026 Developed with Hope by <a href="https://OfferPlant.com" style="color: var(--secondary-color); font-weight: 700;">OfferPlant.com</a> for NGOExpress Portal.</p>
+        <p>Planted by <a href="https://OfferPlant.com" style="color: var(--secondary-color); font-weight: 700;">OfferPlant.com</a> with NgoExpress (Ver.<?php echo APP_VERSION; ?>)</p>
     </footer>
 
 </body>

@@ -47,7 +47,7 @@ $all_pages = mysqli_query($conn, "SELECT * FROM pages ORDER BY title ASC");
             <?php while ($p = mysqli_fetch_assoc($all_pages)): ?>
                 <a href="?edit=<?php echo $p['id']; ?>" style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #f8fafc; border: 1px solid <?php echo ($page_id == $p['id']) ? 'var(--secondary-color)' : '#e2e8f0'; ?>; border-radius: 6px; font-size: 0.85rem; font-weight: 500; color: #1e293b;">
                     <?php echo $p['title']; ?>
-                    <i class="fas fa-edit" style="color: var(--secondary-color); font-size: 0.75rem;"></i>
+                    <i class="bi bi-pencil" style="color: var(--secondary-color); font-size: 0.75rem;"></i>
                 </a>
             <?php endwhile; ?>
         </div>
@@ -60,7 +60,7 @@ $all_pages = mysqli_query($conn, "SELECT * FROM pages ORDER BY title ASC");
             <h3 style="font-size: 1.1rem;">Editing: <span style="color: var(--secondary-color);"><?php echo $editing_page['title']; ?></span></h3>
             <?php if ($success_msg): ?>
                 <span style="color: #22c55e; font-weight: 600; font-size: 0.8rem; background: #f0fdf4; padding: 4px 10px; border-radius: 4px; border: 1px solid #bbf7d0;">
-                    <i class="fas fa-check-circle"></i> <?php echo $success_msg; ?>
+                    <i class="bi bi-check-circle-fill"></i> <?php echo $success_msg; ?>
                 </span>
             <?php endif; ?>
         </div>
@@ -86,7 +86,7 @@ $all_pages = mysqli_query($conn, "SELECT * FROM pages ORDER BY title ASC");
     <?php else: ?>
     <div class="dashboard-card animate-up" style="animation-delay: 0.1s; display: flex; align-items: center; justify-content: center; min-height: 500px; color: #94a3b8;">
         <div style="text-align: center;">
-            <i class="fas fa-file-signature" style="font-size: 4rem; opacity: 0.1; margin-bottom: 20px;"></i>
+            <i class="bi bi-file-earmark-person" style="font-size: 4rem; opacity: 0.1; margin-bottom: 20px;"></i>
             <p>Select a page from the sidebar to manage its content.</p>
         </div>
     </div>

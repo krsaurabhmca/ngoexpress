@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login | NGO Platform</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
     
     <!-- Dynamic Theme Injection (Login) -->
@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="login-card animate-up">
         <div style="text-align: center; margin-bottom: 15px;">
             <div style="width: 60px; height: 60px; background: #f1f5f9; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 10px;">
-                <i class="fas fa-user-lock" style="font-size: 1.5rem; color: var(--primary-color);"></i>
+                <i class="bi bi-person-lock" style="font-size: 1.5rem; color: var(--primary-color);"></i>
             </div>
         </div>
         <h2>Portal Login</h2>

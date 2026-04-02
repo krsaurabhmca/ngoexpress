@@ -127,11 +127,11 @@ $primary_color = get_setting('primary_color');
 
         <div class="footer-note">
             <p>This is a computer generated receipt and does not require a physical signature.</p>
-            <p>&copy; 2026 Developed with Hope by NGO Platform.</p>
+            <p>Planted by <a href="https://OfferPlant.com" style="color: var(--secondary-color); font-weight: 700;">OfferPlant.com</a> with NgoExpress (Ver.<?php echo APP_VERSION; ?>)</p>
         </div>
     </div>
 
-    <a href="javascript:window.print()" class="print-btn">Print / Save PDF <i class="fas fa-print"></i></a>
+    <a href="javascript:window.print()" class="print-btn">Print / Save PDF <i class="bi bi-printer"></i></a>
 
 </body>
 </html>

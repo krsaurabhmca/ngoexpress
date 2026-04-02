@@ -9,7 +9,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/main.css">
     
@@ -251,27 +251,41 @@
 <body>
 
     <!-- WhatsApp Widget -->
-    <a href="#" class="whatsapp-widget"><i class="fab fa-whatsapp"></i></a>
+    <a href="#" class="whatsapp-widget"><i class="bi bi-whatsapp"></i></a>
 
     <nav id="navbar">
-        <a href="index.php" class="logo">
-            <?php if ($logo = get_setting('site_logo')): ?>
-                <img src="<?php echo $logo; ?>" style="height: 40px;" alt="<?php echo $site_name; ?>">
-            <?php else: ?>
-                <i class="fas fa-hand-holding-heart"></i> NGOEXPRESS
-            <?php endif; ?>
+        <a href="index.php" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+            <?php 
+                $logo = get_setting('site_logo');
+                $site_name = get_setting('site_name');
+                $mode = get_setting('logo_display_mode') ?: 'both';
+                
+                if ($logo && ($mode == 'both' || $mode == 'logo')) {
+                    echo '<img src="' . $logo . '" style="height: 40px;" alt="' . $site_name . '">';
+                } elseif (!$logo && ($mode == 'both' || $mode == 'logo')) {
+                    echo '<i class="bi bi-heart-fill"></i>';
+                }
+                
+                if ($mode == 'both' || $mode == 'name') {
+                    echo '<span>' . ($site_name ?: 'NGOEXPRESS') . '</span>';
+                }
+            ?>
         </a>
         <ul class="nav-links">
             <li><a href="index.php">Home</a></li>
+            <li><a href="gallery.php">Gallery</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="membership.php">Membership</a></li>
             <li><a href="contact.php">Contact</a></li>
         </ul>
-        <div style="display: flex; gap: 10px; align-items: center;">
+        <div class="nav-actions" style="display: flex; gap: 10px; align-items: center;">
             <a href="admin/login.php" class="btn btn-outline" style="border-color: #e2e8f0; color: #475569;">Admin</a>
             <a href="donate.php" class="btn btn-primary">Donate Now</a>
         </div>
+        <button class="mobile-menu-btn" onclick="document.querySelector('#navbar .nav-links').classList.toggle('active')">
+            <i class="bi bi-list"></i>
+        </button>
     </nav>
 
     <!-- Hero -->
@@ -287,88 +301,62 @@
         </div>
     </header>
 
-    <!-- Impactful Notice Board / What's New Section -->
-    <section class="notices-section" style="padding: 100px 0; background: #fff;">
-        <div class="container">
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px;">
-                <div class="section-title" style="text-align: left; margin: 0;">
-                    <span style="color: var(--secondary-color); font-weight: 800; font-size: 0.8rem; text-transform: uppercase;">Real-time Updates</span>
-                    <h2 style="font-size: 2.8rem; margin-top: 10px;">What's New at NGOExpress</h2>
+    <!-- Unified About & Notices Widget Section -->
+    <section id="about" class="section container" style="margin-top: 50px;">
+        <div class="grid" style="grid-template-columns: 2fr 1fr; gap: 40px; align-items: start;">
+            
+            <!-- Left: About Us Strategy -->
+            <div style="padding-right: 20px;">
+                <span style="color: var(--secondary-color); font-weight: 800; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">WHO WE ARE</span>
+                <h2 style="font-size: 2.5rem; margin-top: 10px;"><?php echo get_setting('about_title') ?: 'Dedicated to providing education and healthcare.'; ?></h2>
+                <div style="margin: 25px 0;">
+                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1713&q=80" alt="About US" style="width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); height: 300px; object-fit: cover;">
                 </div>
-                <button class="btn btn-outline" style="padding: 12px 30px; border-radius: 50px;">Explore All Projects <i class="fas fa-arrow-right" style="margin-left: 10px;"></i></button>
+                <p style="font-size: 1.05rem; line-height: 1.7; color: #475569;"><?php echo get_setting('about_description') ?: 'We are a non-profit organization focused on making the world a better place. Our mission is to provide support, education, and resources to those in need, fostering a community of resilience and hope.'; ?></p>
+                <ul style="margin-top: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <li style="display: flex; align-items: center; gap: 10px; font-weight: 500;"><i class="bi bi-check2-circle" style="color: var(--secondary-color); font-size: 1.2rem;"></i> Transparent Funding</li>
+                    <li style="display: flex; align-items: center; gap: 10px; font-weight: 500;"><i class="bi bi-check2-circle" style="color: var(--secondary-color); font-size: 1.2rem;"></i> Global Volunteers</li>
+                    <li style="display: flex; align-items: center; gap: 10px; font-weight: 500;"><i class="bi bi-check2-circle" style="color: var(--secondary-color); font-size: 1.2rem;"></i> Sustainable Impact</li>
+                    <li style="display: flex; align-items: center; gap: 10px; font-weight: 500;"><i class="bi bi-check2-circle" style="color: var(--secondary-color); font-size: 1.2rem;"></i> Verified Real Results</li>
+                </ul>
+                <a href="#" class="btn btn-primary" style="margin-top: 35px; padding: 15px 30px; border-radius: 100px;">Discover Our Methodology <i class="bi bi-arrow-right"></i></a>
+            </div>
+
+            <!-- Right: Notice/Updates Widget -->
+            <div style="background: white; padding: 30px; border-radius: 24px; border: 1.5px solid #e2e8f0; position: sticky; top: 100px; box-shadow: 0 10px 30px rgba(0,0,0,0.02);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px;">
+                    <h3 style="margin: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                        <i class="bi bi-broadcast" style="color: var(--secondary-color);"></i> Live Updates
+                    </h3>
+                    <a href="#" style="font-size: 0.8rem; color: var(--secondary-color); font-weight: 700; text-decoration: none;">View All</a>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <?php 
+                    $notices = mysqli_query($conn, "SELECT * FROM notices WHERE status = 'active' ORDER BY date DESC LIMIT 4");
+                    if(mysqli_num_rows($notices) > 0):
+                        while($row = mysqli_fetch_assoc($notices)): ?>
+                            <div style="padding: 15px; border-radius: 16px; background: #f8fafc; transition: 0.3s; cursor: pointer;" onmouseover="this.style.background='#f1f5f9';" onmouseout="this.style.background='#f8fafc';">
+                                <div style="font-size: 0.7rem; color: #94a3b8; font-weight: 700; margin-bottom: 5px; text-transform: uppercase;">
+                                    <?php echo date('M d, Y', strtotime($row['date'])); ?>
+                                </div>
+                                <h4 style="font-size: 0.95rem; margin-bottom: 8px; color: var(--primary-color); line-height: 1.3;"><?php echo $row['title']; ?></h4>
+                                <a href="#" style="color: var(--secondary-color); font-weight: 700; font-size: 0.75rem; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
+                                    Read More <i class="bi bi-chevron-right" style="font-size: 0.6rem;"></i>
+                                </a>
+                            </div>
+                        <?php endwhile;
+                    else: ?>
+                        <!-- Demo Notice Widget -->
+                        <div style="background: #f8fbff; padding: 25px; border-radius: 16px; border: 1.5px dashed #3b82f630; text-align: center;">
+                            <i class="bi bi-inbox" style="font-size: 2rem; color: #cbd5e1; margin-bottom: 10px;"></i>
+                            <h4 style="font-size: 0.95rem; margin: 0 0 5px 0;">No Active Updates</h4>
+                            <p style="font-size: 0.8rem; color: #94a3b8; margin: 0;">Check back soon for the latest projects.</p>
+                        </div>
+                    <?php endif; ?>
+                </div>
             </div>
             
-            <div class="grid grid-3" style="gap: 30px;">
-                <?php 
-                $notices = mysqli_query($conn, "SELECT * FROM notices WHERE status = 'active' ORDER BY date DESC LIMIT 3");
-                if(mysqli_num_rows($notices) > 0):
-                    while($row = mysqli_fetch_assoc($notices)): ?>
-                        <div style="background: #f8fafc; padding: 40px; border-radius: 30px; transition: 0.4s; border: 1.5px solid transparent;" onmouseover="this.style.borderColor='var(--secondary-color)'; this.style.transform='translateY(-10px)';" onmouseout="this.style.borderColor='transparent'; this.style.transform='translateY(0)';">
-                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
-                                <div style="background: var(--secondary-color); color: white; width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
-                                    <i class="fas fa-bullhorn"></i>
-                                </div>
-                                <span style="font-size: 0.75rem; color: #94a3b8; font-weight: 700;"><?php echo date('M d, Y', strtotime($row['date'])); ?></span>
-                            </div>
-                            <h4 style="font-size: 1.2rem; margin-bottom: 20px; color: var(--primary-color); line-height: 1.4;"><?php echo $row['title']; ?></h4>
-                            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 30px;">
-                                <?php echo substr(strip_tags($row['content']), 0, 150); ?>...
-                            </p>
-                            <a href="#" style="color: var(--secondary-color); font-weight: 800; text-decoration: none; font-size: 0.85rem; display: flex; align-items: center; gap: 8px;">
-                                Project Details <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    <?php endwhile;
-                else: ?>
-                    <!-- Demo Notice -->
-                    <div style="background: #f8fbff; padding: 30px; border-radius: 24px; border: 1.5px dashed #3b82f630;">
-                        <span style="color: #64748b; font-size: 0.8rem;">[SYSTEM NOTICE]</span>
-                        <h4 style="margin: 15px 0;">No Active Projects Posted</h4>
-                        <p style="font-size: 0.85rem; color: #777;">Please visit the admin portal to publish the latest notices for our global community.</p>
-                    </div>
-                <?php endif; ?>
-            </div>
-        </div>
-    </section>
-
-    <!-- Success Stats -->
-    <section class="stats container">
-        <div class="grid grid-3">
-            <div class="stat-card">
-                <i class="fas fa-hand-holding-heart"></i>
-                <h3><?php echo currency(); ?>4.5L+</h3>
-                <p>Funds Raised</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-users"></i>
-                <h3>15K+</h3>
-                <p>Global Members</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-globe-asia"></i>
-                <h3>120+</h3>
-                <p>Villages Impacted</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section container">
-        <div class="grid" style="grid-template-columns: 1fr 1fr; align-items: center;">
-            <div class="about-img">
-                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1713&q=80" alt="About US" style="width: 100%; border-radius: 30px; box-shadow: var(--shadow);">
-            </div>
-            <div class="about-text" style="padding-left: 50px;">
-                <span style="color: var(--secondary-color); font-weight: 700;">WHO WE ARE</span>
-                <h2>Dedicated to providing education and healthcare.</h2>
-                <p>We are a non-profit organization focused on making the world a better place. Our mission is to provide support, education, and resources to those in need, fostering a community of resilience and hope.</p>
-                <ul style="margin-top: 20px;">
-                    <li><i class="fas fa-check-circle" style="color: var(--secondary-color); margin-right: 10px;"></i> Transparent funding directly to projects.</li>
-                    <li><i class="fas fa-check-circle" style="color: var(--secondary-color); margin-right: 10px;"></i> Global network of dedicated volunteers.</li>
-                    <li><i class="fas fa-check-circle" style="color: var(--secondary-color); margin-right: 10px;"></i> Sustainable impact on local communities.</li>
-                </ul>
-                <a href="#" class="btn btn-outline" style="margin-top: 30px;">Read Full Story</a>
-            </div>
         </div>
     </section>
 
@@ -381,21 +369,20 @@
                 <p>We focus on critical areas where we can make the most significant impact.</p>
             </div>
             <div class="grid grid-3">
-                <div class="service-card">
-                    <i class="fas fa-graduation-cap" style="font-size: 2.5rem; color: var(--secondary-color); margin-bottom: 20px;"></i>
-                    <h3>Education for All</h3>
-                    <p>Providing books, uniforms, and scholarships to children in underprivileged areas.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-heartbeat" style="font-size: 2.5rem; color: var(--accent-color); margin-bottom: 20px;"></i>
-                    <h3>Health Support</h3>
-                    <p>Organizing free medical camps and providing essential medicines to remote villages.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-seedling" style="font-size: 2.5rem; color: #2ecc71; margin-bottom: 20px;"></i>
-                    <h3>Clean Environment</h3>
-                    <p>Reforestation projects and clean water initiatives for a sustainable future.</p>
-                </div>
+                <?php
+                $services = mysqli_query($conn, "SELECT * FROM services ORDER BY id DESC LIMIT 6");
+                if (mysqli_num_rows($services) > 0) {
+                    while ($srv = mysqli_fetch_assoc($services)) {
+                        echo '<div class="service-card">';
+                        echo '<i class="' . $srv['icon'] . '" style="font-size: 2.5rem; color: var(--secondary-color); margin-bottom: 20px; display: inline-block;"></i>';
+                        echo '<h3>' . htmlspecialchars($srv['title']) . '</h3>';
+                        echo '<p>' . htmlspecialchars($srv['description']) . '</p>';
+                        echo '</div>';
+                    }
+                } else {
+                    echo '<p style="grid-column: span 3; text-align: center; color: #888;">No foundation areas defined yet.</p>';
+                }
+                ?>
             </div>
         </div>
     </section>
@@ -417,19 +404,19 @@
                     <a href="#" class="footer-logo">HOPE&HELP</a>
                     <p>Making the world a better place through community action and dedicated support systems.</p>
                     <div class="social-links" style="margin-top: 20px;">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
                     </div>
                 </div>
                 <div>
                     <h4 style="color: white;">Quick Links</h4>
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Our Projects</a></li>
-                        <li><a href="#">Latest News</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Our Projects</a></li>
+                        <li><a href="gallery.php">Media Gallery</a></li>
+                        <li><a href="contact.php">Contact Us</a></li>
                     </ul>
                 </div>
                 <div>
@@ -476,7 +463,7 @@
             <style> @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } } </style>
             <?php endif; ?>
     <footer style="margin-top: 100px; padding: 50px 0; background: #111; color: #777; text-align: center; border-top: 5px solid var(--primary-color);">
-        <p>&copy; 2026 Developed with Hope by <a href="https://OfferPlant.com" style="color: var(--secondary-color); font-weight: 700;">OfferPlant.com</a> for NGOExpress Portal.</p>
+        <p>Planted by <a href="https://OfferPlant.com" style="color: var(--secondary-color); font-weight: 700;">OfferPlant.com</a> with NgoExpress (Ver.<?php echo APP_VERSION; ?>)</p>
     </footer>
         </div>
     </footer>

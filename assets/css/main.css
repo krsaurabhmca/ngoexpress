@@ -137,3 +137,87 @@ h1, h2, h3, h4, h5 {
 .animate-up {
     animation: fadeInUp 0.8s ease forwards;
 }
+
+/* Mobile Responsiveness & Hamburger Menu */
+.mobile-menu-btn {
+    display: none;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+@media (max-width: 900px) {
+    .nav-links, .nav-actions {
+        display: none !important; /* Managed by JS */
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .nav-links.active {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        border-radius: 0 0 20px 20px;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .grid-3, .grid-2, .grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem !important;
+    }
+    
+    .certificate-container {
+        width: 100% !important;
+        height: auto !important;
+        padding: 20px !important;
+        border-width: 10px !important;
+    }
+    
+    .inner-border {
+        padding: 30px !important;
+    }
+    
+    .certificate-header h1 {
+        font-size: 2.5rem !important;
+    }
+    
+    .member-name {
+        font-size: 2rem !important;
+        padding: 0 20px !important;
+    }
+    
+    .signatures {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    section {
+        padding: 50px 0 !important;
+    }
+    
+    .about-text {
+        padding-left: 0 !important;
+    }
+    
+    .page-header {
+        padding: 120px 20px 60px !important;
+    }
+    
+    nav {
+        padding: 15px 20px !important;
+    }
+}

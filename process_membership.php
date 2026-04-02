@@ -11,6 +11,11 @@ $name = mysqli_real_escape_string($conn, $_POST['name']);
 $email = mysqli_real_escape_string($conn, $_POST['email']);
 $phone = mysqli_real_escape_string($conn, $_POST['phone']);
 $address = mysqli_real_escape_string($conn, $_POST['address']);
+$dob = mysqli_real_escape_string($conn, $_POST['dob'] ?? '');
+$gender = mysqli_real_escape_string($conn, $_POST['gender'] ?? '');
+$blood_group = mysqli_real_escape_string($conn, $_POST['blood_group'] ?? '');
+$occupation = mysqli_real_escape_string($conn, $_POST['occupation'] ?? '');
+$id_proof = mysqli_real_escape_string($conn, $_POST['id_proof'] ?? '');
 
 // Handle Photo Upload
 $photo_path = null;
@@ -35,7 +40,17 @@ if (mysqli_num_rows($check_user) > 0) {
     exit;
 }
 
-$query = "INSERT INTO members (name, email, phone, address, photo, status) VALUES ('$name', '$email', '$phone', '$address', '$photo_path', 'pending')";
+// Auto Upgrade Database Structure for New Fields if not exists
+try {
+    @mysqli_query($conn, "ALTER TABLE members ADD COLUMN dob DATE DEFAULT NULL");
+    @mysqli_query($conn, "ALTER TABLE members ADD COLUMN gender VARCHAR(10) DEFAULT NULL");
+    @mysqli_query($conn, "ALTER TABLE members ADD COLUMN blood_group VARCHAR(5) DEFAULT NULL");
+    @mysqli_query($conn, "ALTER TABLE members ADD COLUMN occupation VARCHAR(100) DEFAULT NULL");
+    @mysqli_query($conn, "ALTER TABLE members ADD COLUMN id_proof VARCHAR(100) DEFAULT NULL");
+} catch (mysqli_sql_exception $e) {
+    // Ignore duplicate column errors 
+}
+$query = "INSERT INTO members (name, email, phone, address, photo, dob, gender, blood_group, occupation, id_proof, status) VALUES ('$name', '$email', '$phone', '$address', '$photo_path', '$dob', '$gender', '$blood_group', '$occupation', '$id_proof', 'pending')";
 
 if (mysqli_query($conn, $query)) {
     echo json_encode(['status' => 'success', 'message' => 'Application received successfully.']);

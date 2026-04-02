@@ -16,7 +16,7 @@ $donations = mysqli_query($conn, "SELECT * FROM donations ORDER BY date DESC");
     <div class="card-header">
         <h3 style="font-size: 1.5rem;">Contribution Registry</h3>
         <?php if ($success_msg): ?>
-            <span style="color: #2ecc71; font-weight: 600; font-size: 0.9rem;"><i class="fas fa-check-circle"></i> <?php echo $success_msg; ?></span>
+            <span style="color: #2ecc71; font-weight: 600; font-size: 0.9rem;"><i class="bi bi-check-circle-fill"></i> <?php echo $success_msg; ?></span>
         <?php endif; ?>
     </div>
 
@@ -49,7 +49,7 @@ $donations = mysqli_query($conn, "SELECT * FROM donations ORDER BY date DESC");
                                 <a href='../receipt.php?id={$row['id']}' target='_blank' class='btn btn-outline' style='padding: 5px 12px; font-size: 0.75rem; border-radius: 8px;'><i class='fas fa-file-invoice-dollar'></i> SLIP</a>
                             </td>
                             <td>
-                                <a href='?delete={$row['id']}' style='color: #e74c3c; font-size: 1rem;' onclick='return confirm(\"Permanently remove record?\")'><i class='fas fa-trash-alt'></i></a>
+                                <a href='?delete={$row['id']}' style='color: #e74c3c; font-size: 1rem;' onclick='return confirm(\"Permanently remove record?\")'><i class='bi bi-trash-alt'></i></a>
                             </td>
                         </tr>";
                 }

@@ -3,7 +3,7 @@ require_once('../includes/db.php');
 
 if (!isset($_GET['id'])) die("Access Denied");
 $id = mysqli_real_escape_string($conn, $_GET['id']);
-$member = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM members WHERE id = '$id' LIMIT 1"));
+$member = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM members WHERE md5(id) = '$id' LIMIT 1"));
 if (!$member) die("Member not found.");
 
 $site_name = get_setting('site_name');
@@ -132,7 +132,7 @@ $secondary_color = get_setting('secondary_color');
         </div>
     </div>
 
-    <a href="javascript:window.print()" class="print-btn">Print ID Card <i class="fas fa-print"></i></a>
+    <a href="javascript:window.print()" class="print-btn">Print ID Card <i class="bi bi-printer"></i></a>
 
 </body>
 </html>

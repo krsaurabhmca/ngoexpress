@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <?php if ($success_msg): ?>
                 <div style="background: #f0fdf4; border: 1.2px solid #bbf7d0; padding: 12px 20px; border-radius: 12px; display: flex; align-items: center; gap: 10px; animation: slideDown 0.4s ease;">
-                    <i class="fas fa-check-circle" style="color: #22c55e;"></i>
+                    <i class="bi bi-check-circle-fill" style="color: #22c55e;"></i>
                     <span style="color: #166534; font-size: 0.8rem; font-weight: 700;"><?php echo $success_msg; ?></span>
                 </div>
             <?php endif; ?>
@@ -66,12 +66,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div style="margin-bottom: 20px; padding: 10px;">
                 <p style="font-size: 0.7rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">Control Sections</p>
             </div>
-            <a href="javascript:void(0)" onclick="showTab('identity')" class="tab-link active" id="link-identity"><i class="fas fa-fingerprint"></i> Brand Identity</a>
-            <a href="javascript:void(0)" onclick="showTab('visuals')" class="tab-link" id="link-visuals"><i class="fas fa-paint-roller"></i> Visual Assets</a>
-            <a href="javascript:void(0)" onclick="showTab('contact')" class="tab-link" id="link-contact"><i class="fas fa-globe"></i> Global Reach</a>
-            <a href="javascript:void(0)" onclick="showTab('security')" class="tab-link" id="link-security"><i class="fas fa-shield-halved"></i> Access & Security</a>
+            <a href="javascript:void(0)" onclick="showTab('identity')" class="tab-link active" id="link-identity"><i class="bi bi-fingerprint"></i> Brand Identity</a>
+            <a href="javascript:void(0)" onclick="showTab('visuals')" class="tab-link" id="link-visuals"><i class="bi bi-paint-bucket"></i> Visual Assets</a>
+            <a href="javascript:void(0)" onclick="showTab('contact')" class="tab-link" id="link-contact"><i class="bi bi-globe"></i> Global Reach</a>
+            <a href="javascript:void(0)" onclick="showTab('security')" class="tab-link" id="link-security"><i class="bi bi-shield-shaded"></i> Access & Security</a>
             <hr style="margin: 20px 0; border: none; border-top: 1.5px solid #f1f5f9;">
-            <a href="?repair=1" class="btn btn-outline" style="width: 100%; border-color: #fda4af; color: #ef4444; font-size: 0.8rem; padding: 10px;">Repair Structure <i class="fas fa-microchip" style="margin-left: 5px;"></i></a>
+            <a href="?repair=1" class="btn btn-outline" style="width: 100%; border-color: #fda4af; color: #ef4444; font-size: 0.8rem; padding: 10px;">Repair Structure <i class="bi bi-cpu" style="margin-left: 5px;"></i></a>
         </div>
 
         <!-- Working Panel -->
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div id="tab-identity" class="tab-content" style="display: block;">
                     <div style="background: white; padding: 35px; border-radius: 24px; border: 1.5px solid #e2e8f0;">
                          <h4 style="font-size: 1.1rem; color: #1e293b; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-fingerprint" style="color: #3b82f6;"></i> Primary Identity Settings
+                            <i class="bi bi-fingerprint" style="color: #3b82f6;"></i> Primary Identity Settings
                         </h4>
                         <div class="grid grid-2" style="gap: 25px;">
                             <div class="form-group">
@@ -94,6 +94,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <label style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase;">Fiscal Currency Symbol</label>
                                 <input type="text" name="currency_symbol" value="<?php echo currency(); ?>" style="width: 100%; height: 50px; border-radius: 12px; border: 1.5px solid #e2e8f0; margin-top: 10px; padding: 0 15px; font-weight: 800; font-size: 1.2rem; text-align: center;">
                             </div>
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase;">"About Us" Headline</label>
+                                <input type="text" name="about_title" value="<?php echo get_setting('about_title'); ?>" placeholder="Dedicated to providing education and healthcare." style="width: 100%; height: 50px; border-radius: 12px; border: 1.5px solid #e2e8f0; margin-top: 10px; padding: 0 15px; font-weight: 600;">
+                            </div>
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase;">"About Us" Mission Statement</label>
+                                <textarea name="about_description" style="width: 100%; border-radius: 12px; border: 1.5px solid #e2e8f0; margin-top: 10px; padding: 15px; min-height: 100px; font-size: 0.9rem; resize: vertical;"><?php echo get_setting('about_description'); ?></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -102,12 +110,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div id="tab-visuals" class="tab-content" style="display: none;">
                     <div style="background: white; padding: 35px; border-radius: 24px; border: 1.5px solid #e2e8f0;">
                         <h4 style="font-size: 1.1rem; color: #1e293b; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-paint-roller" style="color: #f59e0b;"></i> Graphic Assets & Controls
+                            <i class="bi bi-paint-bucket" style="color: #f59e0b;"></i> Graphic Assets & Controls
                         </h4>
                         <div class="grid grid-2" style="gap: 25px;">
                             <div class="form-group" style="background: #f8fafc; padding: 20px; border-radius: 16px; border: 1.2px dashed #cbd5e1;">
                                 <label style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase;">Master Brand Logo</label>
                                 <input type="file" name="logo_file" style="margin-top: 12px; display: block; font-size: 0.8rem;">
+                                
+                                <div style="display: flex; gap: 15px; align-items: center; margin-top: 15px;">
+                                    <span style="font-size: 0.75rem; font-weight: 700; color: #64748b;">Header Display Mode:</span>
+                                    <select name="logo_display_mode" style="height: 35px; border-radius: 8px; border: 1.2px solid #cbd5e1; font-size: 0.75rem; padding: 0 10px;">
+                                        <option value="both" <?php echo get_setting('logo_display_mode') == 'both' || !get_setting('logo_display_mode') ? 'selected' : ''; ?>>Logo & Name</option>
+                                        <option value="logo" <?php echo get_setting('logo_display_mode') == 'logo' ? 'selected' : ''; ?>>Logo Only</option>
+                                        <option value="name" <?php echo get_setting('logo_display_mode') == 'name' ? 'selected' : ''; ?>>Name Only</option>
+                                    </select>
+                                </div>
                                 <?php if ($logo = get_setting('site_logo')): ?>
                                     <div style="background: white; padding: 10px; border-radius: 10px; border: 1.2px solid #e2e8f0; margin-top: 15px; display: inline-block;">
                                         <img src="../<?php echo $logo; ?>" style="height: 30px;" alt="Logo Mini">
@@ -133,7 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div id="tab-contact" class="tab-content" style="display: none;">
                     <div style="background: white; padding: 35px; border-radius: 24px; border: 1.5px solid #e2e8f0;">
                         <h4 style="font-size: 1.1rem; color: #1e293b; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-globe" style="color: #10b981;"></i> Communication Configuration
+                            <i class="bi bi-globe" style="color: #10b981;"></i> Communication Configuration
                         </h4>
                         <div class="grid grid-2" style="gap: 25px;">
                             <div class="form-group">
@@ -156,13 +173,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div id="tab-security" class="tab-content" style="display: none;">
                     <div style="background: white; padding: 35px; border-radius: 24px; border: 1.5px solid #e2e8f0;">
                          <h4 style="font-size: 1.1rem; color: #1e293b; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-shield-halved" style="color: #ef4444;"></i> Access Control & SMTP Protocols
+                            <i class="bi bi-shield-shaded" style="color: #ef4444;"></i> Access Control & SMTP Protocols
                         </h4>
                         <div class="grid grid-2" style="gap: 25px;">
                             <div class="form-group" style="grid-column: span 2; background: #fff1f2; padding: 20px; border-radius: 16px; border: 1.2px solid #fecdd3;">
                                 <label style="font-size: 0.75rem; font-weight: 800; color: #e11d48; text-transform: uppercase;">Master Administrator Password</label>
                                 <input type="password" name="new_password" placeholder="••••••••••••" style="width: 100%; height: 50px; border-radius: 12px; border: 1.5px solid #fda4af; margin-top: 10px; padding: 0 15px; background: white;">
-                                <p style="font-size: 0.7rem; color: #e11d48; margin-top: 10px;"><i class="fas fa-triangle-exclamation"></i> Leave blank to maintain current high-security encryption.</p>
+                                <p style="font-size: 0.7rem; color: #e11d48; margin-top: 10px;"><i class="bi bi-exclamation-triangle"></i> Leave blank to maintain current high-security encryption.</p>
                             </div>
                             <div class="form-group">
                                 <label style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase;">SMTP Relay Host</label>
@@ -179,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <!-- Footer Action -->
                 <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
                      <button type="submit" class="btn btn-primary" style="padding: 18px 80px; border-radius: 100px; font-weight: 800; letter-spacing: 1px; box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.4);">
-                        Synchronize System State <i class="fas fa-cloud-upload-alt" style="margin-left: 10px;"></i>
+                        Synchronize System State <i class="bi bi-cloud-arrow-up" style="margin-left: 10px;"></i>
                     </button>
                 </div>
             </form>

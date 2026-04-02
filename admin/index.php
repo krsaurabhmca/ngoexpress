@@ -14,7 +14,7 @@ $service_count = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM services"))
         <p style="color: #64748b; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Total Members</p>
         <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 5px;">
             <h2 style="font-size: 1.5rem; margin: 0; font-weight: 800; color: #1e293b;"><?php echo $member_count; ?></h2>
-            <i class="fas fa-users" style="font-size: 1.2rem; color: #3b82f6; opacity: 0.2;"></i>
+            <i class="bi bi-people" style="font-size: 1.2rem; color: #3b82f6; opacity: 0.2;"></i>
         </div>
     </div>
 
@@ -22,7 +22,7 @@ $service_count = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM services"))
         <p style="color: #64748b; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Total Contributions</p>
         <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 5px;">
             <h2 style="font-size: 1.5rem; margin: 0; font-weight: 800; color: #1e293b;"><?php echo currency(); ?><?php echo number_format($donation_total, 2); ?></h2>
-            <i class="fas fa-hand-holding-usd" style="font-size: 1.2rem; color: #10b981; opacity: 0.2;"></i>
+            <i class="bi bi-cash-coin" style="font-size: 1.2rem; color: #10b981; opacity: 0.2;"></i>
         </div>
     </div>
 
@@ -30,7 +30,7 @@ $service_count = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM services"))
         <p style="color: #64748b; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Pending Actions</p>
         <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 5px;">
             <h2 style="font-size: 1.5rem; margin: 0; font-weight: 800; color: #1e293b;"><?php echo $pending_donations; ?></h2>
-            <i class="fas fa-tasks" style="font-size: 1.2rem; color: #f59e0b; opacity: 0.2;"></i>
+            <i class="bi bi-list-task" style="font-size: 1.2rem; color: #f59e0b; opacity: 0.2;"></i>
         </div>
     </div>
 
@@ -38,7 +38,7 @@ $service_count = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM services"))
         <p style="color: #64748b; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Active Services</p>
         <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 5px;">
             <h2 style="font-size: 1.5rem; margin: 0; font-weight: 800; color: #1e293b;"><?php echo $service_count; ?></h2>
-            <i class="fas fa-laptop-code" style="font-size: 1.2rem; color: #6366f1; opacity: 0.2;"></i>
+            <i class="bi bi-laptop" style="font-size: 1.2rem; color: #6366f1; opacity: 0.2;"></i>
         </div>
     </div>
 </div>
@@ -85,13 +85,13 @@ $service_count = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM services"))
         <h3 style="font-size: 1.2rem; margin-bottom: 25px;">Quick Management</h3>
         <div style="display: flex; flex-direction: column; gap: 15px;">
             <a href="members.php" class="btn btn-primary" style="justify-content: flex-start; width: 100%; border-radius: 12px; font-size: 0.9rem;">
-                <i class="fas fa-id-card"></i> Generate ID Cards
+                <i class="bi bi-person-vcard"></i> Generate ID Cards
             </a>
             <a href="settings.php" class="btn btn-outline" style="justify-content: flex-start; width: 100%; border-radius: 12px; font-size: 0.9rem;">
-                <i class="fas fa-user-shield"></i> Site Security
+                <i class="bi bi-person-badge-fill"></i> Site Security
             </a>
             <a href="theme.php" class="btn btn-outline" style="justify-content: flex-start; width: 100%; border-radius: 12px; font-size: 0.9rem;">
-                <i class="fas fa-paint-roller"></i> Change Primary Colors
+                <i class="bi bi-paint-bucket"></i> Change Primary Colors
             </a>
             <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
             <p style="font-size: 0.85rem; color: #777; line-height: 1.4;">Need help with the portal? Access our <a href="#" style="color: var(--secondary-color); font-weight: 600;">Documentation</a> for guidance.</p>

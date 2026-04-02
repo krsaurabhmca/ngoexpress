@@ -7,7 +7,7 @@
     <title>Contact Us | Hope & Help NGO</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
     
     <!-- Dynamic Theme Injection -->
@@ -101,19 +101,35 @@
 <body style="background: #f8fbff;">
 
     <nav id="navbar">
-        <a href="index.php" class="logo">
-            <?php if ($logo = get_setting('site_logo')): ?>
-                <img src="<?php echo $logo; ?>" style="height: 40px;" alt="Logo">
-            <?php else: ?>
-                <i class="fas fa-hand-holding-heart" style="color: var(--secondary-color);"></i> NGOEXPRESS
-            <?php endif; ?>
+        <a href="index.php" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+            <?php 
+                $logo = get_setting('site_logo');
+                $site_name = get_setting('site_name'); 
+                $mode = get_setting('logo_display_mode') ?: 'both';
+                
+                if ($logo && ($mode == 'both' || $mode == 'logo')) {
+                    echo '<img src="' . $logo . '" style="height: 40px;" alt="' . $site_name . '">';
+                } elseif (!$logo && ($mode == 'both' || $mode == 'logo')) {
+                    echo '<i class="bi bi-heart-fill"></i>';
+                }
+                
+                if ($mode == 'both' || $mode == 'name') {
+                    echo '<span>' . ($site_name ?: 'NGOEXPRESS') . '</span>';
+                }
+            ?>
         </a>
         <ul class="nav-links">
             <li><a href="index.php">Home</a></li>
+            <li><a href="gallery.php">Gallery</a></li>
             <li><a href="membership.php">Membership</a></li>
             <li><a href="contact.php">Contact</a></li>
         </ul>
-        <a href="donate.php" class="btn btn-primary" style="border-radius: 50px; padding: 10px 25px;">Donate Now</a>
+        <div class="nav-actions">
+            <a href="donate.php" class="btn btn-primary">Donate Now</a>
+        </div>
+        <button class="mobile-menu-btn" onclick="document.querySelector('nav .nav-links').classList.toggle('active')">
+            <i class="bi bi-list"></i>
+        </button>
     </nav>
 
     <?php 
@@ -130,21 +146,21 @@
             <div class="contact-info-card">
                 <h2 style="font-size: 2.2rem; margin-bottom: 30px;">Let's talk about the world's problems.</h2>
                 <div class="info-item">
-                    <i class="fas fa-map-marker-alt"></i>
+                    <i class="bi bi-geo-alt"></i>
                     <div>
                         <h4>Our Location</h4>
                         <p><?php echo $site_address; ?></p>
                     </div>
                 </div>
                 <div class="info-item">
-                    <i class="fas fa-envelope"></i>
+                    <i class="bi bi-envelope"></i>
                     <div>
                         <h4>Email Us</h4>
                         <p><?php echo $site_email; ?></p>
                     </div>
                 </div>
                 <div class="info-item">
-                    <i class="fas fa-phone-alt"></i>
+                    <i class="bi bi-telephone"></i>
                     <div>
                         <h4>Call Anytime</h4>
                         <p><?php echo $site_phone; ?></p>
@@ -154,9 +170,9 @@
                 <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
                     <p style="font-size: 0.85rem; margin-bottom: 15px;">Follow our journey:</p>
                     <div class="social-links">
-                        <a href="#" style="color: white; margin-right: 20px; font-size: 1.2rem;"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" style="color: white; margin-right: 20px; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
-                        <a href="#" style="color: white; margin-right: 20px; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: white; margin-right: 20px; font-size: 1.2rem;"><i class="bi bi-facebook"></i></a>
+                        <a href="#" style="color: white; margin-right: 20px; font-size: 1.2rem;"><i class="bi bi-twitter"></i></a>
+                        <a href="#" style="color: white; margin-right: 20px; font-size: 1.2rem;"><i class="bi bi-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -185,7 +201,7 @@
                         <textarea rows="6" placeholder="Your message and contribution ideas..." required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary" style="padding: 18px 50px; font-size: 1.1rem; border-radius: 12px; margin-top: 10px;">
-                        Send Inquiry <i class="fas fa-paper-plane"></i>
+                        Send Inquiry <i class="bi bi-send"></i>
                     </button>
                 </form>
             </div>
@@ -198,14 +214,14 @@
             </div>
         <?php else: ?>
             <div class="map-section animate-up" style="animation-delay: 0.4s; background: #eee; display: flex; align-items: center; justify-content: center; color: #777;">
-                <p><i class="fas fa-map-marked-alt"></i> Google Maps iframe not configured in Admin Settings.</p>
+                <p><i class="bi bi-map"></i> Google Maps iframe not configured in Admin Settings.</p>
             </div>
         <?php endif; ?>
     </div>
 
     <!-- Footer -->
-    <footer style="margin-top: 100px; padding: 50px 0; background: #111; color: #777; text-align: center;">
-        <p>&copy; 2026 Developed with Hope by NGO Platform.</p>
+    <footer style="margin-top: 100px; padding: 50px 0; background: #111; color: #777; text-align: center; border-top: 5px solid var(--primary-color);">
+        <p>Planted by <a href="https://OfferPlant.com" style="color: var(--secondary-color); font-weight: 700;">OfferPlant.com</a> with NgoExpress (Ver.<?php echo APP_VERSION; ?>)</p>
     </footer>
 
 </body>

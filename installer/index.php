@@ -7,7 +7,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="../assets/css/main.css">
     <style>
@@ -142,7 +142,7 @@
 
     <div class="install-container animate-up">
         <div class="install-header">
-            <i class="fas fa-magic" style="font-size: 3rem; color: var(--secondary-color); margin-bottom: 15px;"></i>
+            <i class="bi bi-magic" style="font-size: 3rem; color: var(--secondary-color); margin-bottom: 15px;"></i>
             <h1>NGO Setup Wizard</h1>
             <p>Configure your database and site basic info to get started.</p>
         </div>
@@ -199,7 +199,7 @@
         </div>
 
         <div class="success-msg">
-            <i class="fas fa-check-circle" style="font-size: 4rem; margin-bottom: 15px;"></i>
+            <i class="bi bi-check-circle-fill" style="font-size: 4rem; margin-bottom: 15px;"></i>
             <h2>Installation Complete!</h2>
             <p>Your NGO platform has been successfully installed. You can now login to your admin panel.</p>
             <a href="../admin/login.php" class="btn btn-primary" style="margin-top: 25px;">Go to Admin Panel</a>

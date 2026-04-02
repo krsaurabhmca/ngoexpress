@@ -7,7 +7,7 @@
     <title>Support Our Cause | Hope & Help NGO</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
     
     <!-- Dynamic Theme Injection (Global) -->
@@ -81,24 +81,40 @@
 <body style="background: #f4f7f6;">
 
     <nav id="navbar" style="background: white; border-bottom: 1px solid #f1f5f9;">
-        <a href="index.php" class="logo">
-            <?php if ($logo = get_setting('site_logo')): ?>
-                <img src="<?php echo $logo; ?>" style="height: 40px;" alt="NGO Logo">
-            <?php else: ?>
-                <i class="fas fa-hand-holding-heart"></i> NGOEXPRESS
-            <?php endif; ?>
+        <a href="index.php" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+            <?php 
+                $logo = get_setting('site_logo');
+                $site_name = get_setting('site_name'); 
+                $mode = get_setting('logo_display_mode') ?: 'both';
+                
+                if ($logo && ($mode == 'both' || $mode == 'logo')) {
+                    echo '<img src="' . $logo . '" style="height: 40px;" alt="' . $site_name . '">';
+                } elseif (!$logo && ($mode == 'both' || $mode == 'logo')) {
+                    echo '<i class="bi bi-heart-fill"></i>';
+                }
+                
+                if ($mode == 'both' || $mode == 'name') {
+                    echo '<span>' . ($site_name ?: 'NGOEXPRESS') . '</span>';
+                }
+            ?>
         </a>
         <ul class="nav-links">
             <li><a href="index.php">Home</a></li>
+            <li><a href="gallery.php">Gallery</a></li>
             <li><a href="membership.php">Membership</a></li>
             <li><a href="contact.php">Contact</a></li>
         </ul>
-        <a href="donate.php" class="btn btn-primary">Donate Now</a>
+        <div class="nav-actions">
+            <a href="donate.php" class="btn btn-primary">Donate Now</a>
+        </div>
+        <button class="mobile-menu-btn" onclick="document.querySelector('nav .nav-links').classList.toggle('active')">
+            <i class="bi bi-list"></i>
+        </button>
     </nav>
 
     <div class="donate-container animate-up">
         <div style="text-align: center; margin-bottom: 40px;">
-            <i class="fas fa-hand-holding-heart" style="font-size: 4rem; color: var(--secondary-color); margin-bottom: 20px;"></i>
+            <i class="bi bi-heart-fill" style="font-size: 4rem; color: var(--secondary-color); margin-bottom: 20px;"></i>
             <h1 style="font-size: 2.5rem; color: var(--primary-color);">Support Our Mission</h1>
             <p style="color: #777;">Every contribution helps us reach more people in need.</p>
         </div>
@@ -136,20 +152,24 @@
             </div>
 
             <button type="submit" class="btn btn-primary" style="width: 100%; padding: 18px; font-size: 1.1rem; margin-top: 20px;">
-                Complete Contribution <i class="fas fa-arrow-right"></i>
+                Complete Contribution <i class="bi bi-arrow-right"></i>
             </button>
         </form>
 
         <div id="success-screen" style="display: none; text-align: center;">
-            <i class="fas fa-check-circle" style="font-size: 5rem; color: #2ecc71; margin-bottom: 25px;"></i>
+            <i class="bi bi-check-circle-fill" style="font-size: 5rem; color: #2ecc71; margin-bottom: 25px;"></i>
             <h2 style="font-size: 2rem;">Thank You, <span id="don_name">Donor</span>!</h2>
             <p style="color: #777; margin-bottom: 30px;">Your generosity is truly appreciated. We've sent a receipt to your email.</p>
             <div style="display: flex; gap: 15px; justify-content: center;">
                 <a href="index.php" class="btn btn-outline" style="border-radius: 12px;">Back to Home</a>
-                <a href="#" id="download-slip" class="btn btn-primary" style="border-radius: 12px;"><i class="fas fa-file-download"></i> Download Slip</a>
+                <a href="#" id="download-slip" class="btn btn-primary" style="border-radius: 12px;"><i class="bi bi-file-earmark-arrow-down"></i> Download Slip</a>
             </div>
         </div>
     </div>
+    <!-- Footer -->
+    <footer style="margin-top: 100px; padding: 50px 0; background: #111; color: #777; text-align: center; border-top: 5px solid var(--primary-color);">
+        <p>Planted by <a href="https://OfferPlant.com" style="color: var(--secondary-color); font-weight: 700;">OfferPlant.com</a> with NgoExpress (Ver.<?php echo APP_VERSION; ?>)</p>
+    </footer>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

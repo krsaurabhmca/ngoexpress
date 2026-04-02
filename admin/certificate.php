@@ -3,7 +3,7 @@ require_once('../includes/db.php');
 
 if (!isset($_GET['id'])) die("Access Denied");
 $id = mysqli_real_escape_string($conn, $_GET['id']);
-$member = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM members WHERE id = '$id' LIMIT 1"));
+$member = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM members WHERE md5(id) = '$id' LIMIT 1"));
 if (!$member) die("Member not found.");
 
 $site_name = get_setting('site_name');
@@ -91,6 +91,21 @@ $secondary_color = get_setting('secondary_color');
             opacity: 0.1;
         }
 
+        .watermark {
+            position: absolute;
+            inset: 0;
+            background: url('../assets/images/logo.png') center center no-repeat;
+            background-size: 50%;
+            opacity: 0.03;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .certificate-body {
+            position: relative;
+            z-index: 10;
+        }
+
         @media print {
             body { background: white; }
             .print-btn { display: none; }
@@ -119,12 +134,15 @@ $secondary_color = get_setting('secondary_color');
                 <div class="certificate-sub">Of Official Membership</div>
             </div>
 
+            <div class="watermark"></div>
+
             <div class="certificate-body">
-                <p style="font-size: 1.1rem; color: #999; margin-bottom: 10px;">This certificate is proudly awarded to:</p>
+                <p style="font-size: 1.1rem; color: #999; margin-bottom: 10px; font-weight: 600; letter-spacing: 2px;">THIS CERTIFICATE IS PROUDLY PRESENTED TO</p>
                 <div class="member-name"><?php echo $member['name']; ?></div>
                 
                 <div class="certificate-text">
-                    In recognition of their commitment and dedication to the social welfare and community development missions of <strong><?php echo $site_name; ?></strong>. We hereby acknowledge your inclusion as an official member under registration ID #NGO-M00<?php echo $member['id']; ?>.
+                    For their outstanding dedication and active participation in the social welfare initiatives driven by <strong style="color: <?php echo $primary_color; ?>;"><?php echo $site_name; ?></strong>. We formally acknowledge your induction into our global network under 
+                    <br><br><span style="background: #f8fafc; padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 8px; font-family: monospace; font-size: 1.1rem;">Verifiable Token: <?php echo md5($member['id']); ?></span>
                 </div>
             </div>
 
@@ -143,12 +161,12 @@ $secondary_color = get_setting('secondary_color');
                 </div>
             </div>
             
-            <i class="fas fa-award corner-decoration" style="top: 20px; left: 20px;"></i>
-            <i class="fas fa-award corner-decoration" style="bottom: 20px; right: 20px;"></i>
+            <i class="bi bi-award corner-decoration" style="top: 20px; left: 20px;"></i>
+            <i class="bi bi-award corner-decoration" style="bottom: 20px; right: 20px;"></i>
         </div>
     </div>
 
-    <a href="javascript:window.print()" class="print-btn">Generate & Print Certificate <i class="fas fa-print"></i></a>
+    <a href="javascript:window.print()" class="print-btn">Generate & Print Certificate <i class="bi bi-printer"></i></a>
 
 </body>
 </html>
