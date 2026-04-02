@@ -168,7 +168,7 @@
     </div>
     <!-- Footer -->
     <footer style="margin-top: 100px; padding: 50px 0; background: #111; color: #777; text-align: center; border-top: 5px solid var(--primary-color);">
-        <p>Planted by <a href="https://OfferPlant.com" style="color: var(--secondary-color); font-weight: 700;">OfferPlant.com</a> with NgoExpress (Ver.<?php echo APP_VERSION; ?>)</p>
+        <p>Planted by <a href="https://OfferPlant.com" style="color: var(--secondary-color); font-weight: 700;">OfferPlant.com</a> with NgoExpress (Ver.<?php echo CORE_VERSION; ?>)</p>
     </footer>
 
     <!-- jQuery -->

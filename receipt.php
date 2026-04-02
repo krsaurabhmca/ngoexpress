@@ -127,7 +127,7 @@ $primary_color = get_setting('primary_color');
 
         <div class="footer-note">
             <p>This is a computer generated receipt and does not require a physical signature.</p>
-            <p>Planted by <a href="https://OfferPlant.com" style="color: var(--secondary-color); font-weight: 700;">OfferPlant.com</a> with NgoExpress (Ver.<?php echo APP_VERSION; ?>)</p>
+            <p>Planted by <a href="https://OfferPlant.com" style="color: var(--secondary-color); font-weight: 700;">OfferPlant.com</a> with NgoExpress (Ver.<?php echo CORE_VERSION; ?>)</p>
         </div>
     </div>
 

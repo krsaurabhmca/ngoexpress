@@ -230,7 +230,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
         <!-- Git/Auto Update Special Section -->
         <div style="margin-top: 30px; padding: 20px; background: #1e293b; border-radius: 15px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-            <p id="system-version-text" style="font-size: 0.8rem; color: #94a3b8; margin: 0;">NgoExpress Ver. <?php echo defined('APP_VERSION') ? APP_VERSION : '0.00'; ?></p>
+            <p id="system-version-text" style="font-size: 0.8rem; color: #94a3b8; margin: 0;">NgoExpress Ver. <?php echo defined('CORE_VERSION') ? CORE_VERSION : '0.00'; ?></p>
             <button id="system-update-btn" class="btn btn-primary" style="margin-top: 10px; width: 100%; border-radius: 8px; padding: 10px; background: #333;" onclick="checkUpdate()">Check for Updates</button>
         </div>
     </div>
@@ -239,7 +239,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; background: white; padding: 15px 20px; border-radius: 10px; border: 1px solid #e2e8f0;">
             <div>
                 <h1 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin: 0;">Dashboard Overview</h1>
-                <p style="color: #64748b; font-size: 0.75rem; margin: 0;">System Status: <span style="color: #22c55e;">Online</span> • Version: <?php echo defined('APP_VERSION') ? APP_VERSION : '0.00'; ?> • Admin</p>
+                <p style="color: #64748b; font-size: 0.75rem; margin: 0;">System Status: <span style="color: #22c55e;">Online</span> • Version: <?php echo defined('CORE_VERSION') ? CORE_VERSION : '0.00'; ?> • Admin</p>
             </div>
             <div style="display: flex; gap: 15px; align-items: center;">
                 <a href="../index.php" target="_blank" class="btn btn-outline" style="padding: 6px 14px; font-size: 0.75rem; border: 1px solid #e2e8f0;">Live Site <i class="bi bi-box-arrow-up-right" style="margin-left: 5px;"></i></a>

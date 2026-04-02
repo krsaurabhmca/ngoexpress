@@ -8,7 +8,7 @@ define('DB_PASS', '');
 define('DB_NAME', 'ngo_test_db');
 
 // System Version Control
-define('APP_VERSION', '1.0.0');
+require_once __DIR__ . '/version.php';
 
 $conn = @mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
