@@ -230,8 +230,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
         <!-- Git/Auto Update Special Section -->
         <div style="margin-top: 30px; padding: 20px; background: #1e293b; border-radius: 15px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-            <p style="font-size: 0.8rem; color: #94a3b8; margin: 0;">NgoExpress Ver. <?php echo defined('APP_VERSION') ? APP_VERSION : '0.00'; ?></p>
-            <button class="btn btn-primary" style="margin-top: 10px; width: 100%; border-radius: 8px; padding: 10px; background: #333;" onclick="checkUpdate()">Update System</button>
+            <p id="system-version-text" style="font-size: 0.8rem; color: #94a3b8; margin: 0;">NgoExpress Ver. <?php echo defined('APP_VERSION') ? APP_VERSION : '0.00'; ?></p>
+            <button id="system-update-btn" class="btn btn-primary" style="margin-top: 10px; width: 100%; border-radius: 8px; padding: 10px; background: #333;" onclick="checkUpdate()">Check for Updates</button>
         </div>
     </div>
 
