@@ -110,4 +110,8 @@ INSERT IGNORE INTO `settings` (`setting_key`, `value`) VALUES
 ('smtp_port', '587'),
 ('smtp_user', ''),
 ('smtp_pass', ''),
-('currency_symbol', '₹');
+('currency_symbol', '₹'),
+('logo_display_mode', 'both'),
+('about_title', 'Dedicated to providing education and healthcare.'),
+('about_description', 'We believe that every individual deserves a basic standard of living.'),
+('db_version', '1.0.0');

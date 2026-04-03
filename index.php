@@ -422,9 +422,9 @@
                 <div>
                     <h4 style="color: white;">Support</h4>
                     <ul>
-                        <li><a href="#">Donate Now</a></li>
-                        <li><a href="#">Become a Member</a></li>
-                        <li><a href="#">Help Center</a></li>
+                        <li><a href="donate.php">Donate Now</a></li>
+                        <li><a href="membership.php">Become a Member</a></li>
+                        <li><a href="contact.php">Help Center</a></li>
                         <li><a href="#">Terms of Service</a></li>
                     </ul>
                 </div>
@@ -462,9 +462,10 @@
             </script>
             <style> @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } } </style>
             <?php endif; ?>
-    <footer style="margin-top: 100px; padding: 50px 0; background: #111; color: #777; text-align: center; border-top: 5px solid var(--primary-color);">
-        <p>Planted by <a href="https://OfferPlant.com" style="color: var(--secondary-color); font-weight: 700;">OfferPlant.com</a> with NgoExpress (Ver.<?php echo CORE_VERSION; ?>)</p>
-    </footer>
+        </div>
+        
+        <div style="margin-top: 100px; padding: 50px 0; background: #111; color: #777; text-align: center; border-top: 5px solid var(--primary-color);">
+            <p>Planted by <a href="https://OfferPlant.com" style="color: var(--secondary-color); font-weight: 700;">OfferPlant.com</a> with NgoExpress (Ver.<?php echo CORE_VERSION; ?>)</p>
         </div>
     </footer>
 
