@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NgoExpress - Features Handbill</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Outfit', sans-serif; }
+        body { background: #f0f4f8; display: flex; justify-content: center; padding: 20px; }
+        
+        /* A4 Paper Dimensions */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            margin: 10mm auto;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .header h1 { font-size: 2.8rem; color: #1e293b; font-weight: 900; letter-spacing: -1px; line-height: 1.1; }
+        .header h1 span { color: #3b82f6; }
+        .header p.subtitle { font-size: 1.2rem; color: #64748b; font-weight: 600; margin-top: 5px; }
+
+        .price-tag {
+            background: #ef4444;
+            color: white;
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin: 15px 0;
+            box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .feature-item {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #3b82f6;
+        }
+
+        .feature-item h3 { font-size: 1.2rem; color: #1e293b; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+        .feature-item h3 i { color: #3b82f6; font-size: 1.4rem; }
+        .feature-item p { font-size: 0.9rem; color: #475569; line-height: 1.4; }
+
+        .highlight-box {
+            background: #e0f2fe;
+            border: 2px dashed #0ea5e9;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .highlight-box h2 { color: #0369a1; font-size: 1.6rem; font-weight: 800; }
+
+        .contact-info {
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            border-radius: 16px;
+            position: absolute;
+            bottom: 20mm;
+            left: 20mm;
+            right: 20mm;
+        }
+
+        .contact-info p.action { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 2px; }
+        .contact-info h2 { font-size: 2.5rem; font-weight: 900; display: flex; align-items: center; justify-content: center; gap: 15px; color: #22c55e; }
+        .contact-info h2 i { font-size: 2.2rem; }
+
+        @media print {
+            body, .page { margin: 0; box-shadow: none; padding: 15mm; border-radius: 0; background-color: white; }
+            .price-tag { animation: none; border: 2px solid #ef4444; color: #ef4444; background: white; }
+            .feature-item { border: 1px solid #e2e8f0; border-left: 5px solid #3b82f6; break-inside: avoid; }
+            .contact-info { position: static; margin-top: 30px; border: 2px solid #1e293b; background: white; color: #1e293b;}
+            .contact-info h2 { color: #1e293b; }
+            .contact-info p.action { color: #475569; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <h1>Get Your Premium NGO <span>Website</span></h1>
+            <p class="subtitle">Complete Setup & Launch in Just 72 Hours!</p>
+            <div class="price-tag">Special Offer: ₹9,999/- Only</div>
+        </div>
+
+        <div class="highlight-box">
+            <h2>Everything you need to digitize your NGO, raise funds, and expand your community reach!</h2>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-item">
+                <h3><i class="bi bi-wallet2"></i> Built-in Donation System</h3>
+                <p>Accept online contributions seamlessly. Complete with dynamic amounts, donor data collection, and receipt download capabilities.</p>
+            </div>
+            <div class="feature-item">
+                <h3><i class="bi bi-person-vcard"></i> Membership & ID Cards</h3>
+                <p>Allow volunteers to apply online. Automatically generate digital ID cards and printable certificates directly from the admin panel.</p>
+            </div>
+            <div class="feature-item">
+                <h3><i class="bi bi-broadcast"></i> Dynamic Notice Widget</h3>
+                <p>Keep your audience informed! Publish live updates, emergency broadcasts, and campaigns directly to the front-page sidebar.</p>
+            </div>
+            <div class="feature-item">
+                <h3><i class="bi bi-palette"></i> 1-Click Theme Control</h3>
+                <p>Never get bored with your design. Choose from over 6 premium color schemes and fonts directly from your secure Admin panel.</p>
+            </div>
+            <div class="feature-item">
+                <h3><i class="bi bi-image"></i> Media Gallery & Programs</h3>
+                <p>Showcase your impact! Easily upload photos from your latest drives and manage custom service areas with Bootstrap icon integrations.</p>
+            </div>
+            <div class="feature-item">
+                <h3><i class="bi bi-laptop"></i> Fast, Secure & Mobile Ready</h3>
+                <p>State-of-the-art PHP structure guarantees high performance. 100% responsive layout ensures your website looks beautiful on any device.</p>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <p class="action">Get Started Today!</p>
+            <h2><i class="bi bi-whatsapp"></i> Call/WhatsApp: 9431426600</h2>
+        </div>
+    </div>
+</body>
+</html>
