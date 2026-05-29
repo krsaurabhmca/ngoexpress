@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,15 +33,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
-    
+
     <!-- Dynamic Theme Injection (Login) -->
     <style>
         :root {
-            --primary-color: <?php echo get_setting('primary_color') ?: '#1e293b'; ?>;
-            --secondary-color: <?php echo get_setting('secondary_color') ?: '#3b82f6'; ?>;
-            --font-family: <?php echo get_setting('typography') ?: 'Outfit, sans-serif'; ?>;
+            --primary-color:
+                <?php echo get_setting('primary_color') ?: '#1e293b'; ?>
+            ;
+            --secondary-color:
+                <?php echo get_setting('secondary_color') ?: '#3b82f6'; ?>
+            ;
+            --font-family:
+                <?php echo get_setting('typography') ?: 'Outfit, sans-serif'; ?>
+            ;
         }
-        * { font-family: var(--font-family) !important; }
+
+        * {
+            font-family: var(--font-family) !important;
+        }
     </style>
     <style>
         body {
@@ -62,11 +72,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
         }
 
-        .login-card h2 { text-align: center; margin-bottom: 8px; color: var(--primary-color); font-weight: 700; }
-        .login-card p.subtitle { text-align: center; margin-bottom: 30px; color: var(--text-muted); font-size: 0.85rem; }
+        .login-card h2 {
+            text-align: center;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
 
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.85rem; color: #475569; }
+        .login-card p.subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #475569;
+        }
 
         .form-group input {
             width: 100%;
@@ -97,15 +127,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     </style>
 </head>
+
 <body>
 
     <div class="login-card animate-up">
         <div style="text-align: center; margin-bottom: 15px;">
-            <div style="width: 60px; height: 60px; background: #f1f5f9; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 10px;">
-                <i class="bi bi-person-lock" style="font-size: 1.5rem; color: var(--primary-color);"></i>
+            <div
+                style="width: 60px; height: 60px; background: #f1f5f9; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+                <i class="bi bi-shield" style="font-size: 1.5rem; color: var(--primary-color);"></i>
             </div>
         </div>
-        <h2>Portal Login</h2>
+        <h2>NGO Express Login</h2>
         <p class="subtitle">Enter your credentials to access the management panel.</p>
 
         <?php if ($error): ?>
@@ -121,7 +153,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label>Password</label>
                 <input type="password" name="password" placeholder="Enter password" required>
             </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 10px; font-weight: 600;">Sign In</button>
+            <button type="submit" class="btn btn-primary"
+                style="width: 100%; padding: 12px; margin-top: 10px; font-weight: 600;">Sign In</button>
         </form>
 
         <div style="text-align: center; margin-top: 30px; font-size: 0.85rem; opacity: 0.7;">
@@ -130,4 +163,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
 </body>
+
 </html>
